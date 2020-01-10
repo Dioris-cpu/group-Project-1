@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to WishDish!</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-  </head>
-  <body>
-    <container> 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome To WishDish!</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+</head>
+<body>
+  <container>
     <section class="section has-background-success">
       <div class="container">
         <nav class="navbar has-background-warning" role="navigation" aria-label="main navigation">
           <div class="navbar-brand">
             <a class="navbar-item" href="/Users/dkb/Desktop/group-Project-1/index.html">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdt40suc9Cd0mkP4OOQOwRwQhkb6f_iDgntWGdFPf5tShvkGgoZw&s" width="50" height="150">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdt40suc9Cd0mkP4OOQOwRwQhkb6f_iDgntWGdFPf5tShvkGgoZw&s"
+                width="50" height="150">
             </a>
-        
-            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+              data-target="navbarBasicExample">
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
@@ -29,15 +33,13 @@
               <a class="navbar-item" href="/Users/dkb/Desktop/group-Project-1/index.html">
                 Home
               </a>
-        
               <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
                   More
                 </a>
-        
                 <div class="navbar-dropdown">
                   <a class="navbar-item">
-                    WishDish Favorites
+                    Recommended
                   </a>
                   <a class="navbar-item">
                     Top Rated
@@ -52,7 +54,6 @@
                 </div>
               </div>
             </div>
-        
             <div class="navbar-end">
               <div class="navbar-item">
                 <div class="buttons">
@@ -67,35 +68,98 @@
             </div>
           </div>
         </nav>
-      </section>
-      <section>
-        <h1 class="title has-text-danger has-background-success">
-          Welcome to WishDish!
-        </h1>
-      </section>
-      <section>
-        <h2 class="subtitle has-background-success">
-          Find the food you're craving within seconds!
-          <div class="field has-addons">
-            <div class="container is-widescreen">
-              <input class="input" type="text" placeholder="Find Eats!">
-            </div>
-            <div class="control">
-              <a class="button is-info">
-                Search
+    </section>
+    <section>
+      <h1 class="title has-text-danger has-background-success">
+        Welcome to WishDish!
+      </h1>
+    </section>
+    <section>
+      <h2 class="subtitle has-background-success">
+        Find the food you're craving within seconds!
+        <div class="bg-img has-background-success">
+      </h2>
+    </section>
+    <section>
+      <div class="field has-addons">
+        <div class="container is-widescreen">
+          <input id="places" class="input" type="text" placeholder="Find Eats!">
+        </div>
+        <div class="control">
+          <a id="searchBtn" class="button is-info">
+            Search
+          </a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Filters
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item">
+                WishDish Favorites
               </a>
-              <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                  Filters
-                </a>
+              <a class="navbar-item">
+                Top Rated
+              </a>
+              <a class="navbar-item">
+                Distance
+              </a>
             </div>
           </div>
         </div>
-          <div class="bg-img has-background-success">
-            <img src="https://lifespa.com/wp-content/uploads/2016/09/lifespa-image-food-diversity-foods-and-herb-layout-of-world-map.jpg" width= "100%">
+      </div>
+      <div class="row">
+        <div class="col-1g-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Search Results</h3>
+                </div>
+                <div class="panel-body" id="wellSection">
+                </div>
+            </div>
+        </div>
+        <div class="col-1g-12">
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                  <h3 class="panel-title">Search Results</h3>
+              </div>
+              <div class="panel-body" id="wellSectionTwo">
+              </div>
           </div>
-        </h2>
-      </section>
-    </container>
-  </body>
+      </div>
+      <div class="col-1g-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Search Results</h3>
+            </div>
+            <div class="panel-body" id="wellSectionThree">
+            </div>
+        </div>
+    </div>
+    <div class="col-1g-12">
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              <h3 class="panel-title">Search Results</h3>
+          </div>
+          <div class="panel-body" id="wellSectionFour">
+          </div>
+      </div>
+  </div>
+  <div class="col-1g-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Search Results</h3>
+        </div>
+        <div class="panel-body" id="wellSectionFive">
+        </div>
+    </div>
+  </div>
+    </div>
+      <img
+      src="https://lifespa.com/wp-content/uploads/2016/09/lifespa-image-food-diversity-foods-and-herb-layout-of-world-map.jpg"
+      width="100%">
+  </div>
+    </section>
+  </container>
+  <script src="script.js"></script>
+</body>
 </html>
