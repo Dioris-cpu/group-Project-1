@@ -32,11 +32,7 @@ p {
    margin-top: 20pt;
    width: 70%;
   
- }
-
-footer.flex {
-   flex-shrink: 0;
-} 
+ } 
 
 #map {
    height: 250px;
@@ -56,5 +52,10 @@ article {
   float: left;
   padding: 5px;
   margin: 1px;
-
+}
+.flex {
+    background-color: red;
+    position: fixed;
+    height: fit-content;
+    width: 100%;
 }
