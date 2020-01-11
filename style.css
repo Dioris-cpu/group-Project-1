@@ -1,0 +1,61 @@
+html {
+   height: 100%;
+   margin: 0em;
+   padding: 0em;
+}
+body {
+    background-image: url("https://sanitainsicilia.it/wp-content/uploads/2019/06/Cibo-e-cultura.jpg");
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    display: flex; flex-direction: column; /*for the flex container*/
+    height: 100vh;  /*flex container*/
+}
+
+.subtitle {
+   text-align: center;
+}
+.container {
+   margin-top: 10px;
+}
+
+p {
+   margin-bottom: 15px;
+   text-align: center;
+   font-weight: bold;
+   color:green;
+   font-style: italic;
+}
+
+.center {
+   margin-top: 20pt;
+   width: 70%;
+  
+ } 
+
+#map {
+   height: 250px;
+   width: 300px;
+   background-color:grey;
+}
+.card.footer {
+   float: left;
+}
+article {
+
+   float: left;
+}
+.cardbox {
+  width: 33%;
+  background-color: aliceblue;
+  float: left;
+  padding: 5px;
+  margin: 1px;
+}
+.footer {
+    background-color: red;
+    position: fixed;
+    height: fit-content;
+    width: 100%;
+}
