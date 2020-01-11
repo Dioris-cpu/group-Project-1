@@ -1,165 +1,163 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Welcome To WishDish!</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script>
-</head>
-<body>
-  <container>
-    <section class="section has-background-success">
-      <div class="container">
-        <nav class="navbar has-background-warning" role="navigation" aria-label="main navigation">
-          <div class="navbar-brand">
-            <a class="navbar-item" href="/Users/dkb/Desktop/group-Project-1/index.html">
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdt40suc9Cd0mkP4OOQOwRwQhkb6f_iDgntWGdFPf5tShvkGgoZw&s"
-                width="50" height="150">
-            </a>
-            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-              data-target="navbarBasicExample">
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-            </a>
-          </div>
-          <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-              <a class="navbar-item" href="/Users/dkb/Desktop/group-Project-1/index.html">
-                Home
-              </a>
-              <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                  More
-                </a>
-                <div class="navbar-dropdown">
-                  <a class="navbar-item">
-                    Recommended
-                  </a>
-                  <a class="navbar-item">
-                    Top Rated
-                  </a>
-                  <a class="navbar-item">
-                    Contact
-                  </a>
-                  <hr class="navbar-divider">
-                  <a class="navbar-item">
-                    Report an issue
-                  </a>
-                </div>
-              </div>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WishDish!</title>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="assets/style/style.css">
+  </head>
+  <body>
+    <container class="">
+        <nav class="navbar has-background-danger level-item" role="navigation" aria-label="main navigation">
+            <h1 class="title has-text-white">
+              Welcome to WishDish!
+            </h1>
+          <h2 class="subtitle">
+    
+            <div class="navbar-end has-margin-bottom-7">
             </div>
-            <div class="navbar-end">
-              <div class="navbar-item">
-                <div class="buttons">
-                  <a class="button has-text-danger">
-                    <strong>Sign up</strong>
-                  </a>
-                  <a class="button has-background-success">
-                    Log in
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
         </nav>
-    </section>
-    <section>
-      <h1 class="title has-text-danger has-background-success">
-        Welcome to WishDish!
-      </h1>
-    </section>
-    <section>
-      <h2 class="subtitle has-background-success">
-        Find the food you're craving within seconds!
-        <div class="bg-img has-background-success">
-      </h2>
-    </section>
-    <section>
-      <div class="field has-addons">
-        <div class="container is-widescreen">
-          <input id="places" class="input" type="text" placeholder="Find Eats!">
-        </div>
-        <div class="control">
-          <a id="searchBtn" class="button is-info">
-            Search
-          </a>
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-              Filters
+        <div class="container">
+
+          <div class="card has-margin-top-7">
+            <header class="card-header">
+              <p class="card-header-title">
+                Find the food you're craving in seconds!
+              </p>
+             
+            </header>
+            <div class="columns">
+              <div class="column is-vcentered">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio asperiores ducimus sint reprehenderit molestiae, earum explicabo velit laborum minima rerum molestias quis aperiam vero sunt ipsa, iure inventore ex ullam!
+              </div>   
+              <div class="column">
+            <div class="card-content ">
+              
+              <div class="content">
+                <p> Enter whichever cuisine below to find some good eats.</p>
+                <br>
+                <div class="field">
+                  <p class="control has-icons-left has-icons-right">
+                    <input class="input is-rounded" type="email" placeholder="Find Some Eats!">
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-utensils"></i>
+                    </span>
+                  </p>
+                
+                  <div class="control level-item">
+                    <button class="button is-info is-large searchBtn">
+                      Search
+                    </button>
+                  </div>
+                </div>
+              </div> 
+
+            </div>
+          
+             
+            </div>
+            <div class="column">
+              <div class="center">
+              <div id="map"></div>
+            </div>
+            </div>   
+           
+          </div>
+          <P style="page-break-before: always"></P>
+          <section>
+        <article class="column is-12">
+          <div class="cardbox" style="display:none">
+            <header class="card-header">
+              <p class="card-header-title">""</p>
+              <a href="#" class="card-header-icon" aria-label="more options">
+                <span class="icon">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </a>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+                <br>
+                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <a href="#" class="card-footer-item">Contact</a>
+              <a href="#" class="card-footer-item">Replace</a>
+            </footer>
+          </div>
+          <div class="cardbox" style="display:none">
+            <header class="card-header">
+              <p class="card-header-title">""</p>
+              <a href="#" class="card-header-icon" aria-label="more options">
+                <span class="icon">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </a>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+                <br>
+                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <a href="#" class="card-footer-item">Contact</a>
+              <a href="#" class="card-footer-item">Replace</a>
+            </footer>
+          </div>
+          <div class="cardbox" style="display:none">
+            <header class="card-header">
+              <p class="card-header-title">""</p>
+              <a href="#" class="card-header-icon" aria-label="more options">
+                <span class="icon">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </a>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+                <br>
+                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <a href="#" class="card-footer-item">Contact</a>
+              <a href="#" class="card-footer-item">Replace</a>
+            </footer>
+          </div>
+            </div>
+          </div>
+        </article>
+  
+    </div>
+          <div class="columns is-vcentered">
+            <a class="column is-6">
+              <p class="bd-notification is-primary"></p>
             </a>
-            <div class="navbar-dropdown">
-              <a class="navbar-item">
-                WishDish Favorites
-              </a>
-              <a class="navbar-item">
-                Top Rated
-              </a>
-              <a class="navbar-item">
-                Distance
-              </a>
-            </div>
+            <a class="column is-8">
+              <p class="bd-notification is-primary">Get rid of it.</p>
+            </a>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-1g-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Search Results</h3>
-                </div>
-                <div class="panel-body" id="wellSection">
-                </div>
-            </div>
-        </div>
-        <div class="col-1g-12">
-          <div class="panel panel-default">
-              <div class="panel-heading">
-                  <h3 class="panel-title">Search Results</h3>
-              </div>
-              <div class="panel-body" id="wellSectionTwo">
-              </div>
-          </div>
-      </div>
-      <div class="col-1g-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Search Results</h3>
-            </div>
-            <div class="panel-body" id="wellSectionThree">
-            </div>
-        </div>
-    </div>
-    <div class="col-1g-12">
-      <div class="panel panel-default">
-          <div class="panel-heading">
-              <h3 class="panel-title">Search Results</h3>
-          </div>
-          <div class="panel-body" id="wellSectionFour">
-          </div>
-      </div>
-  </div>
-  <div class="col-1g-12">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Search Results</h3>
-        </div>
-        <div class="panel-body" id="wellSectionFive">
-        </div>
-    </div>
-  </div>
-    </div>
-      <img
-      src="https://lifespa.com/wp-content/uploads/2016/09/lifespa-image-food-diversity-foods-and-herb-layout-of-world-map.jpg"
-      width="100%">
-  </div>
-    </section>
-  </container>
+          
+          <div id="wellSection"></div>
+        </section>
+    </container>
+    <footer class="flex">
+
+    </footer>
+  </body>
   <script src="script.js"></script>
-</body>
 </html>
