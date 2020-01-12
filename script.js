@@ -14,34 +14,34 @@ $(document).ready(function () {
     restaurants = document.getElementsByClassName("cardbox");
 
   setUsersCurrentPosition();
-  $("#searchBtn").on("click", function () {
-    var city = places.value;
-    var queryURL =
-      "https://developers.zomato.com/api/v2.1/locations?query=" +
-      city +
-      "&apikey=" +
-      apikey;
-    $.ajax({
-      url: queryURL,
-      cors: true
-    }).then(data => {
-      var entityId = data.location_suggestions[0].entity_id;
-      var entityType = data.location_suggestions[0].entity_type;
-      var queryURL =
-        "https://developers.zomato.com/api/v2.1/location_details?entity_id=" +
-        entityId +
-        "&entity_type=" +
-        entityType +
-        "&apikey=" +
-        apikey;
-      $.ajax({
-        url: queryURL,
-        cors: true
-      }).then(data => {
-        console.log(data);
-      });
-    });
-  });
+  // $("#searchBtn").on("click", function () {
+  //   var city = places.value;
+  //   var queryURL =
+  //     "https://developers.zomato.com/api/v2.1/locations?query=" +
+  //     city +
+  //     "&apikey=" +
+  //     apikey;
+  //   $.ajax({
+  //     url: queryURL,
+  //     cors: true
+  //   }).then(data => {
+  //     var entityId = data.location_suggestions[0].entity_id;
+  //     var entityType = data.location_suggestions[0].entity_type;
+  //     var queryURL =
+  //       "https://developers.zomato.com/api/v2.1/location_details?entity_id=" +
+  //       entityId +
+  //       "&entity_type=" +
+  //       entityType +
+  //       "&apikey=" +
+  //       apikey;
+  //     $.ajax({
+  //       url: queryURL,
+  //       cors: true
+  //     }).then(data => {
+  //       console.log(data);
+  //     });
+  //   });
+  // });
   function setUsersCurrentPosition() {
     geo.getCurrentPosition(function (position) {
       lat = position.coords.latitude;
@@ -61,7 +61,7 @@ $(document).ready(function () {
         method: "GET"
       }).then(function (food) {
         console.log(food);
-        var wellSection = document.getElementById("wellSection");
+        
         var allRest = food.nearby_restaurants;
         allRest.forEach(function (data) {
           var info = data.restaurant;
@@ -69,7 +69,7 @@ $(document).ready(function () {
           var cuisines = info.cuisines;
           var apikey = info.apikey;
           p.innerText = cuisines + apikey;
-          wellSection.appendChild(p);
+          
         });
         getMarkers(allRest);
       });
@@ -119,11 +119,11 @@ function getMarkers(restuarants) {
 }
 
 
-$("#searchButton").click(showSearch);
+$("#search-btn").click(showSearch);
 
 function showSearch() {
   let searches = JSON.parse(localStorage.getItem("search"));
-  let searchText = $("#searchText").val();
+  let searchText = $(".search-text").val().trim();
   if (searches) {
     searches.push(searchText);
   } else {
@@ -133,6 +133,6 @@ function showSearch() {
   localStorage.setItem("search", JSON.stringify(searches));
 
   let newSearch = $("<p>").text(searchText);
-  $("#pastSearch").append(newSearch);
+  $("#past-search").append(newSearch);
 }
 });
