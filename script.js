@@ -265,5 +265,5 @@ function getMarkers(restuarants) {
     //re-center map around the extended boundaries.
     mapDisplay.fitBounds(bounds);
 }
-});
 
+});
