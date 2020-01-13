@@ -68,9 +68,9 @@ $(document).ready(function () {
    
 
       cuisines.forEach(function(cuisine) {
-        var foodType = cuisine.cuisine.cuisine_name;
-        var idNum = cuisine.cuisine.cuisine_id;
-        if (foodType == searchItem) {
+        var foodType = cuisine.cuisine.cuisine_name.toLowerCase(),
+            idNum = cuisine.cuisine.cuisine_id;
+        if (foodType == searchItem.toLowerCase()) {
           id = idNum;
         } else {
           var message = "Oh No! Nothing found! Tyr to check your spelling.";
