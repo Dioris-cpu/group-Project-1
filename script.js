@@ -125,10 +125,23 @@ $(document).ready(function () {
     address = restaurant.restaurant.location.address,
     hours = restaurant.restaurant.timings,
     infoUrl = restaurant.restaurant.menu_url,
+    usrRating = restaurant.restaurant.user_rating.aggregate_rating,
+    ratingText = restaurant.restaurant.user_rating.rating_text,
     type = restaurant.restaurant.cuisines,
+    phone = restaurant.restaurant.phone_numbers,
     picUrl = 'https://sanitainsicilia.it/wp-content/uploads/2019/06/Cibo-e-cultura.jpg';
 
-    //try to find missing images elsewhere in data or set by leave them set to a default pic.
+  //use only first phone number provided when there are multiple.
+  var phoneArr = phone.split(',');
+      phone = phoneArr[0];
+
+  //reformat phone number for a clickable call link.
+  var phoneLink = phone.replace("(", "");
+      phoneLink = phoneLink.replace(")", "");
+      phoneLink = phoneLink.replace("-", "");
+      phoneLink = phoneLink.replace(" ", "");
+  
+    //try to find missing images elsewhere in data or leave them set to a default pic.
     if (typeof(restaurant.restaurant.photos) !== "undefined" && restaurant.restaurant.photos[0].photo.thumb_url !== "") {
       picUrl = restaurant.restaurant.photos[0].photo.thumb_url;
     } else if ((typeof(restaurant.restaurant.thumb) !== "undefined" && restaurant.restaurant.thumb !== ""))  { 
@@ -141,6 +154,9 @@ $(document).ready(function () {
   $('.address1').attr('target:', '_blank');
   $('.hours1').text('Hours: '+hours);
   $('.url1').attr('href', infoUrl);
+  $('.rating1').text('Avg Customer Rating: '+usrRating+' ('+ratingText+')');
+  $('.contact1').attr('href', 'tel:'+phoneLink); //call from mobile device
+  $('.call1').text('  '+phone);
 }
  
  function paintTwo(restaurant) {
@@ -148,10 +164,23 @@ $(document).ready(function () {
       address = restaurant.restaurant.location.address,
       hours = restaurant.restaurant.timings,
       infoUrl = restaurant.restaurant.menu_url,
+      usrRating = restaurant.restaurant.user_rating.aggregate_rating,
+      ratingText = restaurant.restaurant.user_rating.rating_text,
       type = restaurant.restaurant.cuisines,
+      phone = restaurant.restaurant.phone_numbers,
       picUrl = 'https://sanitainsicilia.it/wp-content/uploads/2019/06/Cibo-e-cultura.jpg';
 
-      //try to find missing images elsewhere in data or set by leave them set to a default pic.
+      //use only first phone number provided when they are multiple.
+      var phoneArr = phone.split(',');
+      phone = phoneArr[0];
+
+      //reformat phone number for a clickable call link.
+      var phoneLink = phone.replace("(", "");
+      phoneLink = phoneLink.replace(")", "");
+      phoneLink = phoneLink.replace("-", "");
+      phoneLink = phoneLink.replace(" ", "");
+
+      //try to find missing images elsewhere in data or leave them set to a default pic.
       if (typeof(restaurant.restaurant.photos) !== "undefined" && restaurant.restaurant.photos[0].photo.thumb_url !== "") {
         picUrl = restaurant.restaurant.photos[0].photo.thumb_url;
       } else if ((typeof(restaurant.restaurant.thumb) !== "undefined" && restaurant.restaurant.thumb !== ""))  { 
@@ -164,6 +193,9 @@ $(document).ready(function () {
   $('.address2').attr('target:', '_blank');
   $('.hours2').text('Hours: '+hours);
   $('.url2').attr('href', infoUrl);
+  $('.rating2').text('Avg Customer Rating: '+usrRating+' ('+ratingText+')');
+  $('.contact2').attr('href', 'tel:'+phoneLink); //call from mobile device
+  $('.call2').text('  '+phone);
  }
  
 
@@ -172,10 +204,23 @@ $(document).ready(function () {
       address = restaurant.restaurant.location.address,
       hours = restaurant.restaurant.timings,
       infoUrl = restaurant.restaurant.menu_url,
+      usrRating = restaurant.restaurant.user_rating.aggregate_rating,
+      ratingText = restaurant.restaurant.user_rating.rating_text,
       type = restaurant.restaurant.cuisines,
+      phone = restaurant.restaurant.phone_numbers,
       picUrl = 'https://sanitainsicilia.it/wp-content/uploads/2019/06/Cibo-e-cultura.jpg';
 
-      //try to find missing images elsewhere in data or set by leave them set to a default pic.
+      //use only first phone number provided when they are multiple.
+      var phoneArr = phone.split(',');
+      phone = phoneArr[0];
+
+      //reformat phone number for a clickable call link.
+      var phoneLink = phone.replace("(", "");
+      phoneLink = phoneLink.replace(")", "");
+      phoneLink = phoneLink.replace("-", "");
+      phoneLink = phoneLink.replace(" ", "");
+
+      //try to find missing images elsewhere in data or leave them set to a default pic.
       if (typeof(restaurant.restaurant.photos) !== "undefined" && restaurant.restaurant.photos[0].photo.thumb_url !== "") {
         picUrl = restaurant.restaurant.photos[0].photo.thumb_url;
       } else if ((typeof(restaurant.restaurant.thumb) !== "undefined" && restaurant.restaurant.thumb !== ""))  { 
@@ -188,6 +233,9 @@ $(document).ready(function () {
   $('.address3').attr('target:', '_blank');
   $('.hours3').text('Hours: '+hours);
   $('.url3').attr('href', infoUrl);
+  $('.rating3').text('Avg Customer Rating: '+usrRating+' ('+ratingText+')');
+  $('.contact3').attr('href', 'tel:'+phoneLink); //call from mobile device
+  $('.call3').text('  '+phone);
   }
 
   function showSearch(cuisine) {
