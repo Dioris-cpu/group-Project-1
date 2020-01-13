@@ -57,10 +57,12 @@ article {
   text-align: center;
 }
 footer.footer {
-  padding: 30px;
-  height: 25px;
-  flex-shrink: 0  !important;
-}
+
+   margin-top: 20px;
+   padding: 30px;
+   height: auto;
+   flex-shrink: 0;
+
 .copyright {
   color: white;
 }
