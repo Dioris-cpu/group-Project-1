@@ -61,9 +61,10 @@ article {
    text-align: center;
 }
 footer.footer {
+   margin-top: 20px;
    padding: 30px;
-   height: 25px;
-   flex-shrink: 0  !important;
+   height: auto;
+   flex-shrink: 0;
 }
 .copyright {
    color: white;

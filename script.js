@@ -2,6 +2,7 @@
 $(document).ready(function () {
   var  zamatoKey = "1c401654af94d9b2ae6b6197c14f20ec",
        geo = navigator.geolocation,
+       nextRestaurant = 2,
        mapDisplay;
 
   //get nearby restaurants on document load.
@@ -99,9 +100,36 @@ $(document).ready(function () {
    }
 
   function paintResults(results) {
+    
     paintOne(results[0]);
     paintTwo(results[1]);
     paintThree(results[2]);
+  
+  //Event listener for replace
+  $('.replace-one').click(function() { 
+    if (nextRestaurant > 20) {
+      var message = "Sorry! There are no more results nearby";
+    } else {
+    nextRestaurant ++;
+    paintOne(results[nextRestaurant])
+    }
+  })
+  $('.replace-two').click(function() { 
+    if (nextRestaurant > 20) {
+      var message = "Sorry! There are no more results nearby";
+    } else {
+    nextRestaurant ++;
+    paintTwo(results[nextRestaurant])
+    }
+  })
+  $('.replace-three').click(function() { 
+    if (nextRestaurant > 20) {
+      var message = "Sorry! There are no more results nearby";
+    } else {
+    nextRestaurant ++;
+    paintThree(results[nextRestaurant])
+    }
+  })
     
  }
 
@@ -109,9 +137,18 @@ $(document).ready(function () {
   var name = restaurant.restaurant.name,
   address = restaurant.restaurant.location.address,
   hours = restaurant.restaurant.timings,
-  picUrl = restaurant.restaurant.photos[0].photo.thumb_url,
   infoUrl = restaurant.restaurant.menu_url,
-  type = restaurant.restaurant.establishment[0];   
+  type = restaurant.restaurant.establishment[0],
+  picUrl;
+
+  //handle missing images by setting them to a default pic.
+  if (typeof(restaurant.restaurant.photos) !== "undefined") {
+    picUrl = restaurant.restaurant.photos[0].photo.thumb_url;
+    $('.pic1').attr('src', picUrl);
+  } else {    
+    picUrl = 'https://sanitainsicilia.it/wp-content/uploads/2019/06/Cibo-e-cultura.jpg';
+    $('.pic1').attr('src', picUrl);
+  }
 
   $('.name1').text(name);
   $('.type1').text(type);
@@ -124,15 +161,23 @@ $(document).ready(function () {
 
  function paintTwo(restaurant) {
   var name = restaurant.restaurant.name,
-  address = restaurant.restaurant.location.address,
-  hours = restaurant.restaurant.timings,
-  picUrl = restaurant.restaurant.photos[0].photo.thumb_url,
-  infoUrl = restaurant.restaurant.menu_url,
-  type = restaurant.restaurant.establishment[0];   
+      address = restaurant.restaurant.location.address,
+      hours = restaurant.restaurant.timings,
+      infoUrl = restaurant.restaurant.menu_url,
+      type = restaurant.restaurant.establishment[0],
+      picUrl;
+  
+  if (typeof(restaurant.restaurant.photos) !== "undefined") {
+    picUrl = restaurant.restaurant.photos[0].photo.thumb_url;
+    $('.pic2').attr('src', picUrl);
+  } else {    
+    picUrl = 'https://sanitainsicilia.it/wp-content/uploads/2019/06/Cibo-e-cultura.jpg';
+    $('.pic2').attr('src', picUrl);
+  }
 
   $('.name2').text(name);
   $('.type2').text(type);
-  $('.pic2').attr('src', picUrl);
+  
   $('.address2').text('Address: '+address);
   $('.address2').attr('target:', '_blank');
   $('.hours2').text('Hours: '+hours);
@@ -143,9 +188,19 @@ $(document).ready(function () {
   var name = restaurant.restaurant.name,
   address = restaurant.restaurant.location.address,
   hours = restaurant.restaurant.timings,
-  picUrl = restaurant.restaurant.photos[0].photo.thumb_url,
   infoUrl = restaurant.restaurant.menu_url,
-  type = restaurant.restaurant.establishment[0];   
+  type = restaurant.restaurant.establishment[0],
+  picUrl;
+
+  
+  //handle missing images by setting them to a default pic.
+  if (typeof(restaurant.restaurant.photos) !== "undefined") {
+    picUrl = restaurant.restaurant.photos[0].photo.thumb_url;
+    $('.pic3').attr('src', picUrl);
+  } else {    
+    picUrl = 'https://sanitainsicilia.it/wp-content/uploads/2019/06/Cibo-e-cultura.jpg';
+    $('.pic3').attr('src', picUrl);
+  }
 
   $('.name3').text(name);
   $('.type3').text(type);
