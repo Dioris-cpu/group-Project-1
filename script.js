@@ -1,17 +1,15 @@
-
 $(document).ready(function () {
   var  zamatoKey = "1c401654af94d9b2ae6b6197c14f20ec",
        geo = navigator.geolocation,
        nextRestaurant = 2,
        mapDisplay;
-
   //get nearby restaurants on document load.
   setUsersCurrentPosition();
-
   //Main event.
   $("#search-btn").on("click", function () {
     var searchItem = $(".search-text").val().trim();
     showSearch(searchItem);
+
     geo.getCurrentPosition(function (position) {
       lat = position.coords.latitude;
       lng = position.coords.longitude;
@@ -67,6 +65,7 @@ $(document).ready(function () {
         method: "GET"
       }).then(function (food) {
         console.log(food);
+
         
         var allRest = food.nearby_restaurants;
         paintResults(allRest)
@@ -88,6 +87,7 @@ $(document).ready(function () {
         var message = "Oh No! Nothing found! Check your spelling to be sure.";
       }
     });
+
     return id;
    }
 
@@ -121,8 +121,7 @@ $(document).ready(function () {
     nextRestaurant ++;
     paintThree(results[nextRestaurant])
     }
-  })
-    
+  });
  }
 
  function paintOne(restaurant) {
@@ -241,7 +240,6 @@ function getMarkers(restuarants) {
   var markers = [],
       locations = [],
       bounds = new google.maps.LatLngBounds();
-
   //Set the coordinates into a Json format.
   restuarants.forEach(function(restaurant) {
       var coords = {
@@ -253,7 +251,6 @@ function getMarkers(restuarants) {
   //generate markers for each restaurant location. 
   locations.forEach(function (location) {
       var position = new google.maps.LatLng(location.lat, location.lng);
-  
       markers.push(
         new google.maps.Marker({
           position: position,
@@ -268,6 +265,5 @@ function getMarkers(restuarants) {
     //re-center map around the extended boundaries.
     mapDisplay.fitBounds(bounds);
 }
-
-
 });
+
