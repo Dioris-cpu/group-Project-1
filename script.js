@@ -325,5 +325,4 @@ function getMarkers(restuarants) {
     mapDisplay.fitBounds(bounds);
 }
 
-
 });
