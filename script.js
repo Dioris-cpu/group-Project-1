@@ -11,7 +11,7 @@ $(document).ready(function () {
   //Main event.
   $("#search-btn").on("click", function () {
     var searchItem = $(".search-text").val().trim();
-    showSearch(searchItem);
+    setInLocalStorage(searchItem);
     geo.getCurrentPosition(function (position) {
       lat = position.coords.latitude;
       lng = position.coords.longitude;
@@ -238,18 +238,51 @@ $(document).ready(function () {
   $('.call3').text('  '+phone);
   }
 
-  function showSearch(cuisine) {
-    var searches = JSON.parse(localStorage.getItem("search"));
+  function setInLocalStorage(cuisine) {
+    var searches; 
          
-    if (searches) {
-      searches.push(cuisine);
+    if (localStorage.getItem("search") === null) {
+      searches = [];
     } else {
-      searches = [cuisine];
+      searches = JSON.parse(localStorage.getItem("search"));
     }
+    searches.push(cuisine);
     localStorage.setItem("search", JSON.stringify(searches));
-    //
-    $("#past-search").append(searches);
+    showHistory(cuisine);
   }
+  
+  function showHistory(dish) {
+    var history;  
+    if (localStorage.getItem("search") === null) {
+      history = [];
+    } else {
+      history = JSON.parse(localStorage.getItem("search"));
+    }
+     //reset current list
+     document.querySelector("#history").textContent = "";
+
+     var container = document.getElementById('history'),
+         ul = document.createElement("ul"),
+         aTag = document.createElement("a");
+
+      // //list current search item
+      ul.className = 'menu-list';
+      // currentItem = document.createElement("li");
+      // aTag.appendChild(document.createTextNode(dish))
+      // currentItem.appendChild(aTag);
+      // ul.appendChild(currentItem);
+
+      //The rest of them
+      history.forEach(function(search)  {
+        var a = document.createElement("a"),
+            li = document.createElement("li");
+
+        a.appendChild(document.createTextNode(search));
+        li.appendChild(a);
+        ul.appendChild(li);
+      })
+      container.appendChild(ul);
+   }
 
 function initMap(coords) {
   mapDisplay = new google.maps.Map(document.getElementById("map"), {

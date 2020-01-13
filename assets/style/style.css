@@ -34,6 +34,12 @@ p {
   color:green;
   font-style: italic;
 }
+
+li {
+  /* color: red; */
+  font-weight: bold;
+  font-style: italic;
+}
 #map {
   height: 250px;
   width: 300px;
@@ -44,7 +50,9 @@ p {
 article {
   float: left;
 }
-
+.history {
+  margin: 20px;
+}
 .rating1, .rating2, .rating3 {
   font-weight: bold;
   color: royalblue;
