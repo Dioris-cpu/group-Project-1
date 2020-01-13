@@ -4,11 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>WishDish!</title>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- Google Maps -->
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCI3zv9mMZuVUPGueGVIYUyD3etz0VJK7I&callback=initMap">
+      </script>
     <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <!-- Font Awesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
     <link rel="stylesheet" href="style.css">
@@ -17,7 +25,7 @@
 
   </head>
   <body>
-    <container class="">
+    <container class="flex-container">
         <nav class="navbar has-background-danger level-item" role="navigation" aria-label="main navigation">
             <h1 class="title has-text-white">
               Welcome to WishDish!
@@ -28,7 +36,6 @@
             </div>
         </nav>
         <div class="container">
-
           <div class="card has-margin-top-7">
             <header class="card-header">
               <p class="card-header-title">
@@ -38,9 +45,11 @@
             </header>
             <div class="columns">
 
-              <div class="column is-vcentered" id="pastSearch">
-                
+              <div class="column is-vcentered">
+               <div id="past-search"></div>
 
+
+              <div class="column is-vcentered" id="pastSearch">
               </div>   
               <div class="column">
             <div class="card-content ">
@@ -50,15 +59,19 @@
                 <br>
                 <div class="field">
                   <p class="control has-icons-left has-icons-right">
+                    <input class="input is-rounded search-text" type="text" placeholder="Find Some Eats!">
+
 
                     <input class="input is-rounded" placeholder="Find Some Eats!" id="searchText">
-
-                    <span class="icon is-small is-left">
+                <span class="icon is-small is-left">
                       <i class="fas fa-utensils"></i>
                     </span>
                   </p>
                 
                   <div class="control level-item">
+
+                    <button class="button is-info is-large"  id="search-btn">
+
 
                     <button class="button is-info is-large searchBtn" id="searchButton">
 
@@ -68,21 +81,60 @@
                 </div>
               </div> 
 
-
             </div>
           
              
             </div>
-            <div class="column">
-              <div class="center">
+            <div class="column is-centered is-vcentered">
+              
               <div id="map"></div>
             </div>
-            </div>   
 
           </div>
           <P style="page-break-before: always"></P>
       
           <section>
+
+        <article class="column is-12 fix-pad">
+          <div class="cardbox">
+            <header class="card-header">
+              <p class="card-header-title rest-name1">Restaurant Name</p>
+             
+            </header>
+            <div class="card-content">
+              <div class="content">
+                <div class="rest1-info">Restaurant Data</div>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <a href="#" class="card-footer-item">Contact</a>
+              <a href="#" class="card-footer-item">Replace</a>
+            </footer>
+          </div>
+          <div class="cardbox">
+            <header class="card-header">
+              <p class="card-header-title rest-name1">Restaurant Name</p>
+             
+            </header>
+            <div class="card-content">
+              <div class="content">
+                <div class="rest1-info">Restaurant Data</div>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <a href="#" class="card-footer-item">Contact</a>
+              <a href="#" class="card-footer-item">Replace</a>
+            </footer>
+          </div>
+          <div class="cardbox">
+            <header class="card-header">
+              <p class="card-header-title rest-name1">Restaurant Name</p>
+             
+            </header>
+            <div class="card-content">
+              <div class="content">
+                <div class="rest1-info">Restaurant Data</div>
+
         <article class="column is-12">
           <div class="cardbox">
 
@@ -100,6 +152,7 @@
                 <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
                 <br>
                 <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+
               </div>
             </div>
             <footer class="card-footer">
@@ -107,7 +160,6 @@
               <a href="#" class="card-footer-item">Replace</a>
             </footer>
           </div>
-
           <div class="cardbox">
 
             <header class="card-header">
@@ -173,10 +225,20 @@
           <div id="wellSection"></div>
         </section>
     </container>
+
+    <div class="flex-foot">
+    <footer class="footer has-background-danger">
+      
+      <p class="copyright">Copyright © 2020</p>
+
     <footer class="footer" href="index.html">
       <p>Copyright © 2020</p>
     </footer>
+  </div>
   </body>
   <script src="script.js"></script>
+
 </html>
+</html>
+
 
