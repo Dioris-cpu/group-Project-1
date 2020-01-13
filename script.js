@@ -44,13 +44,8 @@ $(document).ready(function () {
             }).then(function (food) {
               console.log(food);
               
-              var allRest = food.nearby_restaurants;
-              // allRest.forEach(function (data) {
-              //   var info = data.restaurant;
-              //   var p = document.createElement("p");
-              //   var cuisines = info.cuisines;
-              //   var apikey = info.apikey;
-              //   p.innerText = cuisines + apikey;
+              var allRest = food.restaurants;
+              
                 
             
               getMarkers(allRest);
@@ -66,17 +61,17 @@ $(document).ready(function () {
    console.log(cuisines);
    console.log(typeof(cuisines));
    
-
-      cuisines.forEach(function(cuisine) {
-        var foodType = cuisine.cuisine.cuisine_name.toLowerCase(),
-            idNum = cuisine.cuisine.cuisine_id;
-        if (foodType == searchItem.toLowerCase()) {
-          id = idNum;
-        } else {
-          var message = "Oh No! Nothing found! Tyr to check your spelling.";
-        }
-      });
-      return id;
+  
+    cuisines.forEach(function(cuisine) {
+      var foodType = cuisine.cuisine.cuisine_name.toLowerCase(),
+          idNum = cuisine.cuisine.cuisine_id;
+      if (foodType == searchItem.toLowerCase()) {
+        id = idNum;
+      } else {
+        var message = "Oh No! Nothing found! Check your spelling to be sure.";
+      }
+    });
+    return id;
    };
   function setUsersCurrentPosition() {
     geo.getCurrentPosition(function (position) {
