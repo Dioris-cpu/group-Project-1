@@ -59,15 +59,17 @@ $(document).ready(function() {
           method: "GET"
         }).then(function(food) {
           console.log(food);
-          var wellSection = document.getElementById("wellSection");
+          var wellSection = document.getElementById("wellSection")
           var allRest = food.nearby_restaurants;
-          allRest.forEach(function(data) {
-            var info = data.restaurant;
-            var p = document.createElement("p");
-            var cuisines = info.cuisines;
-            var apikey = info.apikey;
-            p.innerText = cuisines + apikey;
-            wellSection.appendChild(p);
+          allRest.forEach(function(data){ 
+              var info = data.restaurant;
+              var p = document.createElement("p");
+              var cuisines = info.cuisines;
+              var resCloseOne = info.cuisines[0];
+              var resAddy = info.location.address;
+              var resPhoto = info.photos_url;
+              p.innerText = cuisines + resCloseOne  + resAddy + resPhoto;// address, phone, name, cusines, picture, url 
+              wellSection.appendChild(p);
           });
         });
         initMap(coords);
