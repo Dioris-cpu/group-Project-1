@@ -1,15 +1,17 @@
+
 $(document).ready(function () {
   var  zamatoKey = "1c401654af94d9b2ae6b6197c14f20ec",
        geo = navigator.geolocation,
        nextRestaurant = 2,
        mapDisplay;
+
   //get nearby restaurants on document load.
   setUsersCurrentPosition();
+
   //Main event.
   $("#search-btn").on("click", function () {
     var searchItem = $(".search-text").val().trim();
-    showSearch(searchItem);
-
+    setInLocalStorage(searchItem);
     geo.getCurrentPosition(function (position) {
       lat = position.coords.latitude;
       lng = position.coords.longitude;
@@ -54,20 +56,15 @@ $(document).ready(function () {
       initMap(coords);
       console.log(coords);
       $.ajax({
-        url:
-          "https://developers.zomato.com/api/v2.1/geocode?lat=" +
-          lat +
-          "&lon=" +
-          lng +
-          "&apikey=" +
-          zamatoKey +
-          "",
+        url: "https://developers.zomato.com/api/v2.1/search?lat=" 
+        + lat +
+        "&lon=" + lng +
+        "&apikey=" + zamatoKey +"",
         method: "GET"
       }).then(function (food) {
         console.log(food);
-
         
-        var allRest = food.nearby_restaurants;
+        var allRest = food.restaurants;
         paintResults(allRest)
         getMarkers(allRest);
         });
@@ -87,7 +84,6 @@ $(document).ready(function () {
         var message = "Oh No! Nothing found! Check your spelling to be sure.";
       }
     });
-
     return id;
    }
 
@@ -121,30 +117,36 @@ $(document).ready(function () {
     nextRestaurant ++;
     paintThree(results[nextRestaurant])
     }
-  });
+  })
  }
 
  function paintOne(restaurant) {
   var name = restaurant.restaurant.name,
-  address = restaurant.restaurant.location.address,
-  hours = restaurant.restaurant.timings,
-  infoUrl = restaurant.restaurant.menu_url,
-  type = restaurant.restaurant.cuisines,
-  picUrl;
-console.log(type);
-
-  //handle missing images from either data set by setting them to a default pic.
-  if (typeof(restaurant.restaurant.photos) !== "undefined") {
-    picUrl = restaurant.restaurant.photos[0].photo.thumb_url;
-    $('.pic1').attr('src', picUrl);
-  } else if ((typeof(restaurant.restaurant.thumb) !== "undefined"))  { 
-    picUrl = restaurant.restaurant.thumb;
-    $('.pic1').attr('src', picUrl);
-  } else {
+    address = restaurant.restaurant.location.address,
+    hours = restaurant.restaurant.timings,
+    infoUrl = restaurant.restaurant.menu_url,
+    usrRating = restaurant.restaurant.user_rating.aggregate_rating,
+    ratingText = restaurant.restaurant.user_rating.rating_text,
+    type = restaurant.restaurant.cuisines,
+    phone = restaurant.restaurant.phone_numbers,
     picUrl = 'https://sanitainsicilia.it/wp-content/uploads/2019/06/Cibo-e-cultura.jpg';
-    $('.pic1').attr('src', picUrl);
-  }
 
+  //use only first phone number provided when there are multiple.
+  var phoneArr = phone.split(',');
+      phone = phoneArr[0];
+
+  //reformat phone number for a clickable call link.
+  var phoneLink = phone.replace("(", "");
+      phoneLink = phoneLink.replace(")", "");
+      phoneLink = phoneLink.replace("-", "");
+      phoneLink = phoneLink.replace(" ", "");
+  
+    //try to find missing images elsewhere in data or leave them set to a default pic.
+    if (typeof(restaurant.restaurant.photos) !== "undefined" && restaurant.restaurant.photos[0].photo.thumb_url !== "") {
+      picUrl = restaurant.restaurant.photos[0].photo.thumb_url;
+    } else if ((typeof(restaurant.restaurant.thumb) !== "undefined" && restaurant.restaurant.thumb !== ""))  { 
+      picUrl = restaurant.restaurant.thumb;
+    }
   $('.name1').text(name);
   $('.type1').text(type);
   $('.pic1').attr('src', picUrl);
@@ -152,59 +154,78 @@ console.log(type);
   $('.address1').attr('target:', '_blank');
   $('.hours1').text('Hours: '+hours);
   $('.url1').attr('href', infoUrl);
-  }
-
+  $('.rating1').text('Avg Customer Rating: '+usrRating+' ('+ratingText+')');
+  $('.contact1').attr('href', 'tel:'+phoneLink); //call from mobile device
+  $('.call1').text('  '+phone);
+}
+ 
  function paintTwo(restaurant) {
   var name = restaurant.restaurant.name,
       address = restaurant.restaurant.location.address,
       hours = restaurant.restaurant.timings,
       infoUrl = restaurant.restaurant.menu_url,
+      usrRating = restaurant.restaurant.user_rating.aggregate_rating,
+      ratingText = restaurant.restaurant.user_rating.rating_text,
       type = restaurant.restaurant.cuisines,
-      picUrl;
-  
-  //handle missing images from either data set by setting them to a default pic.
-  if (typeof(restaurant.restaurant.photos) !== "undefined") {
-    picUrl = restaurant.restaurant.photos[0].photo.thumb_url;
-    $('.pic2').attr('src', picUrl);
-  } else if ((typeof(restaurant.restaurant.thumb) !== "undefined"))  { 
-    picUrl = restaurant.restaurant.thumb;
-    $('.pic2').attr('src', picUrl);
-  } else {
-    picUrl = 'https://sanitainsicilia.it/wp-content/uploads/2019/06/Cibo-e-cultura.jpg';
-    $('.pic2').attr('src', picUrl);
-  }
+      phone = restaurant.restaurant.phone_numbers,
+      picUrl = 'https://sanitainsicilia.it/wp-content/uploads/2019/06/Cibo-e-cultura.jpg';
 
+      //use only first phone number provided when they are multiple.
+      var phoneArr = phone.split(',');
+      phone = phoneArr[0];
 
+      //reformat phone number for a clickable call link.
+      var phoneLink = phone.replace("(", "");
+      phoneLink = phoneLink.replace(")", "");
+      phoneLink = phoneLink.replace("-", "");
+      phoneLink = phoneLink.replace(" ", "");
+
+      //try to find missing images elsewhere in data or leave them set to a default pic.
+      if (typeof(restaurant.restaurant.photos) !== "undefined" && restaurant.restaurant.photos[0].photo.thumb_url !== "") {
+        picUrl = restaurant.restaurant.photos[0].photo.thumb_url;
+      } else if ((typeof(restaurant.restaurant.thumb) !== "undefined" && restaurant.restaurant.thumb !== ""))  { 
+        picUrl = restaurant.restaurant.thumb;
+      }
   $('.name2').text(name);
   $('.type2').text(type);
-  
+  $('.pic2').attr('src', picUrl);
   $('.address2').text('Address: '+address);
   $('.address2').attr('target:', '_blank');
   $('.hours2').text('Hours: '+hours);
   $('.url2').attr('href', infoUrl);
-  }
+  $('.rating2').text('Avg Customer Rating: '+usrRating+' ('+ratingText+')');
+  $('.contact2').attr('href', 'tel:'+phoneLink); //call from mobile device
+  $('.call2').text('  '+phone);
+ }
+ 
 
  function paintThree(restaurant) {
   var name = restaurant.restaurant.name,
-  address = restaurant.restaurant.location.address,
-  hours = restaurant.restaurant.timings,
-  infoUrl = restaurant.restaurant.menu_url,
-  type = restaurant.restaurant.cuisines,
-  picUrl;
+      address = restaurant.restaurant.location.address,
+      hours = restaurant.restaurant.timings,
+      infoUrl = restaurant.restaurant.menu_url,
+      usrRating = restaurant.restaurant.user_rating.aggregate_rating,
+      ratingText = restaurant.restaurant.user_rating.rating_text,
+      type = restaurant.restaurant.cuisines,
+      phone = restaurant.restaurant.phone_numbers,
+      picUrl = 'https://sanitainsicilia.it/wp-content/uploads/2019/06/Cibo-e-cultura.jpg';
 
-  
-  //handle missing images from either data set by setting them to a default pic.
-  if (typeof(restaurant.restaurant.photos) !== "undefined") {
-    picUrl = restaurant.restaurant.photos[0].photo.thumb_url;
-    $('.pic3').attr('src', picUrl);
-  } else if ((typeof(restaurant.restaurant.thumb) !== "undefined"))  { 
-    picUrl = restaurant.restaurant.thumb;
-    $('.pic3').attr('src', picUrl);
-  } else {
-    picUrl = 'https://sanitainsicilia.it/wp-content/uploads/2019/06/Cibo-e-cultura.jpg';
-    $('.pic3').attr('src', picUrl);
-  }
+      //use only first phone number provided when they are multiple.
+      var phoneArr = phone.split(',');
+      phone = phoneArr[0];
 
+      //reformat phone number for a clickable call link.
+      var phoneLink = phone.replace("(", "");
+      phoneLink = phoneLink.replace(")", "");
+      phoneLink = phoneLink.replace("-", "");
+      phoneLink = phoneLink.replace(" ", "");
+
+      //try to find missing images elsewhere in data or leave them set to a default pic.
+      if (typeof(restaurant.restaurant.photos) !== "undefined" && restaurant.restaurant.photos[0].photo.thumb_url !== "") {
+        picUrl = restaurant.restaurant.photos[0].photo.thumb_url;
+      } else if ((typeof(restaurant.restaurant.thumb) !== "undefined" && restaurant.restaurant.thumb !== ""))  { 
+        picUrl = restaurant.restaurant.thumb;
+      }
   $('.name3').text(name);
   $('.type3').text(type);
   $('.pic3').attr('src', picUrl);
@@ -212,20 +233,56 @@ console.log(type);
   $('.address3').attr('target:', '_blank');
   $('.hours3').text('Hours: '+hours);
   $('.url3').attr('href', infoUrl);
+  $('.rating3').text('Avg Customer Rating: '+usrRating+' ('+ratingText+')');
+  $('.contact3').attr('href', 'tel:'+phoneLink); //call from mobile device
+  $('.call3').text('  '+phone);
   }
 
-  function showSearch(cuisine) {
-    var searches = JSON.parse(localStorage.getItem("search"));
+  function setInLocalStorage(cuisine) {
+    var searches; 
          
-    if (searches) {
-      searches.push(cuisine);
+    if (localStorage.getItem("search") === null) {
+      searches = [];
     } else {
-      searches = [cuisine];
+      searches = JSON.parse(localStorage.getItem("search"));
     }
+    searches.push(cuisine);
     localStorage.setItem("search", JSON.stringify(searches));
-    //
-    $("#past-search").append(searches);
+    showHistory(cuisine);
   }
+  
+  function showHistory(dish) {
+    var history;  
+    if (localStorage.getItem("search") === null) {
+      history = [];
+    } else {
+      history = JSON.parse(localStorage.getItem("search"));
+    }
+     //reset current list
+     document.querySelector("#history").textContent = "";
+
+     var container = document.getElementById('history'),
+         ul = document.createElement("ul"),
+         aTag = document.createElement("a");
+
+      // //list current search item
+      ul.className = 'menu-list';
+      // currentItem = document.createElement("li");
+      // aTag.appendChild(document.createTextNode(dish))
+      // currentItem.appendChild(aTag);
+      // ul.appendChild(currentItem);
+
+      //The rest of them
+      history.forEach(function(search)  {
+        var a = document.createElement("a"),
+            li = document.createElement("li");
+
+        a.appendChild(document.createTextNode(search));
+        li.appendChild(a);
+        ul.appendChild(li);
+      })
+      container.appendChild(ul);
+   }
 
 function initMap(coords) {
   mapDisplay = new google.maps.Map(document.getElementById("map"), {
@@ -240,6 +297,7 @@ function getMarkers(restuarants) {
   var markers = [],
       locations = [],
       bounds = new google.maps.LatLngBounds();
+
   //Set the coordinates into a Json format.
   restuarants.forEach(function(restaurant) {
       var coords = {
@@ -251,6 +309,7 @@ function getMarkers(restuarants) {
   //generate markers for each restaurant location. 
   locations.forEach(function (location) {
       var position = new google.maps.LatLng(location.lat, location.lng);
+  
       markers.push(
         new google.maps.Marker({
           position: position,
