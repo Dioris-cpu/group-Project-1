@@ -1,47 +1,82 @@
 $(document).ready(function () {
-  var apikey = "1c401654af94d9b2ae6b6197c14f20ec",
-    googApiKey = "AIzaSyCI3zv9mMZuVUPGueGVIYUyD3etz0VJK7I",
-    zamatoKey = "1c401654af94d9b2ae6b6197c14f20ec",
-    queryTerm = "",
-    queryURL =
-      "https://developers.zomato.com/api/v2.1/locations?query=" +
-      "city" +
-      "&apikey=" +
-      apikey,
-    places = document.getElementById("places"),
-    geo = navigator.geolocation,
-    mapDisplay,
-    restaurants = document.getElementsByClassName("cardbox");
+  var  zamatoKey = "1c401654af94d9b2ae6b6197c14f20ec",
+       apikey,
+       geo = navigator.geolocation,
+       mapDisplay;
 
+  //get nearby restaurants on document load.
   setUsersCurrentPosition();
-  // $("#searchBtn").on("click", function () {
-  //   var city = places.value;
-  //   var queryURL =
-  //     "https://developers.zomato.com/api/v2.1/locations?query=" +
-  //     city +
-  //     "&apikey=" +
-  //     apikey;
-  //   $.ajax({
-  //     url: queryURL,
-  //     cors: true
-  //   }).then(data => {
-  //     var entityId = data.location_suggestions[0].entity_id;
-  //     var entityType = data.location_suggestions[0].entity_type;
-  //     var queryURL =
-  //       "https://developers.zomato.com/api/v2.1/location_details?entity_id=" +
-  //       entityId +
-  //       "&entity_type=" +
-  //       entityType +
-  //       "&apikey=" +
-  //       apikey;
-  //     $.ajax({
-  //       url: queryURL,
-  //       cors: true
-  //     }).then(data => {
-  //       console.log(data);
-  //     });
-  //   });
-  // });
+
+  //Main event.
+  $("#search-btn").on("click", function () {
+    var searchItem = $(".search-text").val().trim();
+    showSearch(searchItem);
+        geo.getCurrentPosition(function (position) {
+          lat = position.coords.latitude;
+          lng = position.coords.longitude;
+          var coords = { lat: lat, lng: lng };
+          console.log(coords);
+
+          $.ajax({
+            url:
+              "https://developers.zomato.com/api/v2.1/cuisines?lat=" +
+              lat +
+              "&lon=" +
+              lng +
+              "&apikey=" +
+              zamatoKey +
+              "",
+            method: "GET"
+          }).then(function (cuisines) {
+            console.log(cuisines);
+            var cuisineId = getCuisineId(cuisines, searchItem).toString();
+          console.log(cuisineId);
+          var reqUrl = "https://developers.zomato.com/api/v2.1/search?lat=" +
+          lat +
+          "&lon=" + lng +
+          "&cuisines=" + cuisineId +
+          "&apikey=" + zamatoKey +
+          "";debugger
+            $.ajax({
+              url: reqUrl,
+              method: "GET"
+            }).then(function (food) {
+              console.log(food);
+              
+              var allRest = food.nearby_restaurants;
+              // allRest.forEach(function (data) {
+              //   var info = data.restaurant;
+              //   var p = document.createElement("p");
+              //   var cuisines = info.cuisines;
+              //   var apikey = info.apikey;
+              //   p.innerText = cuisines + apikey;
+                
+            
+              getMarkers(allRest);
+            });
+            });
+          });
+        });
+        
+ 
+  function getCuisineId(data, searchItem) { 
+    var cuisines = data.cuisines,
+        id;
+   console.log(cuisines);
+   console.log(typeof(cuisines));
+   
+
+      cuisines.forEach(function(cuisine) {
+        var foodType = cuisine.cuisine.cuisine_name;
+        var idNum = cuisine.cuisine.cuisine_id;
+        if (foodType == searchItem) {
+          id = idNum;
+        } else {
+          var message = "Oh No! Nothing found! Tyr to check your spelling.";
+        }
+      });
+      return id;
+   };
   function setUsersCurrentPosition() {
     geo.getCurrentPosition(function (position) {
       lat = position.coords.latitude;
@@ -119,20 +154,19 @@ function getMarkers(restuarants) {
 }
 
 
-$("#search-btn").click(showSearch);
 
-function showSearch() {
-  let searches = JSON.parse(localStorage.getItem("search"));
-  let searchText = $(".search-text").val().trim();
+
+function showSearch(cuisine) {
+  var searches = JSON.parse(localStorage.getItem("search"));
+       
   if (searches) {
-    searches.push(searchText);
+    searches.push(cuisine);
   } else {
-    searches = [searchText];
+    searches = [cuisine];
   }
-
   localStorage.setItem("search", JSON.stringify(searches));
+console.log(searches);
 
-  let newSearch = $("<p>").text(searchText);
-  $("#past-search").append(newSearch);
+  $("#past-search").append(searches);
 }
 });
