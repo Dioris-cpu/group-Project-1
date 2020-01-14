@@ -246,7 +246,7 @@ $(document).ready(function () {
     } else {
       searches = JSON.parse(localStorage.getItem("search"));
     }
-    if (searches.includes(cuisine)) {return}
+    if (searches.includes(cuisine)){return}
     searches.push(cuisine);
     localStorage.setItem("search", JSON.stringify(searches));
     showHistory(cuisine);
