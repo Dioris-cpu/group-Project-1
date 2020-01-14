@@ -27,6 +27,17 @@ p {
   margin-top: 20pt;
   width: 70%;
 }
+
+.warn {
+  color: red;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.sorry {
+  color: yellow;
+  font-weight: bold;
+}
 p {
   margin-bottom: 15px;
   text-align: center;

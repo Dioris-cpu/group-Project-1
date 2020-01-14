@@ -89,11 +89,15 @@ $("input").keyup(function(event) {
           idNum = cuisine.cuisine.cuisine_id;
       if (foodType == searchItem.toLowerCase()) {
         id = idNum;
-      } else {
-        var message = "Oh No! Nothing found! Check your spelling to be sure.";
-      }
+      } 
     });
+      if (typeof(id) !== 'undefined') {
     return id;
+      } else {
+        var message = "Oh No! Nothing found! Check your spelling to be sure.",
+        className = 'warn';
+        showAlert(message, className);
+      }
    }
 
   function paintResults(results) {
@@ -105,7 +109,9 @@ $("input").keyup(function(event) {
   //Event listener for replacing result
   $('.replace-one').click(function() { 
     if (nextRestaurant > 20) {
-      var message = "Sorry! There are no more results nearby";
+      var message = "Sorry! There are no more results nearby",
+      className = 'sorry';
+      showAlert(message, className);
     } else {
     nextRestaurant ++;
     paintOne(results[nextRestaurant])
@@ -113,7 +119,9 @@ $("input").keyup(function(event) {
   })
   $('.replace-two').click(function() { 
     if (nextRestaurant > 20) {
-      var message = "Sorry! There are no more results nearby";
+      var message = "Sorry! There are no more results nearby",
+      className = 'sorry';
+      showAlert(message, className);
     } else {
     nextRestaurant ++;
     paintTwo(results[nextRestaurant])
@@ -121,7 +129,9 @@ $("input").keyup(function(event) {
   })
   $('.replace-three').click(function() { 
     if (nextRestaurant > 20) {
-      var message = "Sorry! There are no more results nearby";
+      var message = "Sorry! There are no more results nearby",
+      className = 'sorry';
+      showAlert(message, className);
     } else {
     nextRestaurant ++;
     paintThree(results[nextRestaurant])
@@ -217,7 +227,7 @@ $("input").keyup(function(event) {
       ratingText = restaurant.restaurant.user_rating.rating_text,
       type = restaurant.restaurant.cuisines,
       phone = restaurant.restaurant.phone_numbers,
-      picUrl = 'https://sanitainsicilia.it/wp-content/uploads/2019/06/Cibo-e-cultura.jpg';
+      picUrl = 'assets/pics/spice_world.jpg';
 
       //use only first phone number provided when they are multiple.
       var phoneArr = phone.split(',');
@@ -292,6 +302,34 @@ function showHistory() {
   container.appendChild(ul);
 }
 
+
+//show any message on the dOM.
+function showAlert(message, className){
+  //clear any existing alerts
+  clearAlert();
+  
+  var div = document.createElement('div');
+  div.className = 'message '+className;
+  
+  div.appendChild(document.createTextNode(message));
+  
+  var container = document.getElementById('message-container'),
+      vessel = document.getElementById('message');
+  
+  //insert message
+  container.insertBefore(div, vessel);
+
+  //clear message after 3.5 seconds.
+  setTimeout(clearAlert, 3500);
+}
+
+ function clearAlert(){
+  var currentAlert = document.querySelector('.message');
+  if(currentAlert){
+      currentAlert.remove();
+  }
+}
+  
 function initMap(coords) {
 mapDisplay = new google.maps.Map(document.getElementById("map"), {
   zoom: 10,
