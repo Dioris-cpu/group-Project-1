@@ -246,6 +246,7 @@ $(document).ready(function () {
     } else {
       searches = JSON.parse(localStorage.getItem("search"));
     }
+    if (searches.includes(cuisine)){return}
     searches.push(cuisine);
     localStorage.setItem("search", JSON.stringify(searches));
     showHistory(cuisine);
@@ -265,6 +266,8 @@ $(document).ready(function () {
          ul = document.createElement("ul"),
          aTag = document.createElement("a");
 
+      
+
       // //list current search item
       ul.className = 'menu-list';
       // currentItem = document.createElement("li");
@@ -277,6 +280,10 @@ $(document).ready(function () {
         var a = document.createElement("a"),
             li = document.createElement("li");
 
+        a.addEventListener('click', function(){
+          $("#searchQuery").val(search)
+          $('#search-btn').click()
+        })
         a.appendChild(document.createTextNode(search));
         li.appendChild(a);
         ul.appendChild(li);
