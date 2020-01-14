@@ -4,179 +4,154 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>WishDish!</title>
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- Google Maps -->
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCI3zv9mMZuVUPGueGVIYUyD3etz0VJK7I&callback=initMap">
+      </script>
+    <!-- Bulma -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <!-- Font Awesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-
-    <link rel="stylesheet" href="style.css">
-
-   
-
+    <link rel="stylesheet" href="assets/style/style.css">
   </head>
   <body>
-    <container class="">
+    <container class="flex-container">
         <nav class="navbar has-background-danger level-item" role="navigation" aria-label="main navigation">
             <h1 class="title has-text-white">
               Welcome to WishDish!
             </h1>
           <h2 class="subtitle">
-    
             <div class="navbar-end has-margin-bottom-7">
             </div>
         </nav>
         <div class="container">
-
           <div class="card has-margin-top-7">
             <header class="card-header">
               <p class="card-header-title">
                 Find the food you're craving in seconds!
               </p>
-             
             </header>
             <div class="columns">
-
-              <div class="column is-vcentered" id="pastSearch">
-                
-
-              </div>   
+              <div class="column is-vcentered">
+               
+                <p class="menu-label has-text-left history">
+                  <i class="fas fa-history fa-2x"></i>  History
+                </p>
+                <div id="history"></div>
+              </aside>
+              
+              </div>
               <div class="column">
             <div class="card-content ">
-              
               <div class="content">
                 <p> Enter whichever cuisine below to find some good eats.</p>
                 <br>
                 <div class="field">
                   <p class="control has-icons-left has-icons-right">
-
-                    <input class="input is-rounded" placeholder="Find Some Eats!" id="searchText">
-
+                    <input id="searchQuery" class="input is-rounded search-text" type="text" placeholder="Find Some Eats!">
                     <span class="icon is-small is-left">
                       <i class="fas fa-utensils"></i>
                     </span>
                   </p>
-                
                   <div class="control level-item">
-
-                    <button class="button is-info is-large searchBtn" id="searchButton">
-
+                    <button class="button is-info is-large"  id="search-btn">
                       Search
                     </button>
                   </div>
                 </div>
-              </div> 
-
-
+              </div>
             </div>
-          
-             
             </div>
-            <div class="column">
-              <div class="center">
+            <div class="column is-centered is-vcentered">
               <div id="map"></div>
             </div>
-            </div>   
-
           </div>
           <P style="page-break-before: always"></P>
-      
           <section>
-        <article class="column is-12">
-          <div class="cardbox">
+
+        <article class="column is-12 fix-pad">
+          <div class="cardbox one">
 
             <header class="card-header">
-              <p class="card-header-title">""</p>
-              <a href="#" class="card-header-icon" aria-label="more options">
-                <span class="icon">
-                  <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-              </a>
+
+              <p class="card-header-title name1">Restaurant Name</p><br>
+              <p class="type1"></p>
             </header>
+            <div class="card-header rating1 is-centered"></div>
             <div class="card-content">
               <div class="content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
-                <br>
-                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+               <img src="" alt="Restaurant 1" class="pic1">
+               <div class="address1 text-space"></div>
+               <div class="hours1 text-space"></div>
+               <a class="url1 text-space">Click here for menu, reviews and more...</a>
               </div>
             </div>
             <footer class="card-footer">
-              <a href="#" class="card-footer-item">Contact</a>
-              <a href="#" class="card-footer-item">Replace</a>
+              <a href="#" class="card-footer-item contact1">Call: &nbsp; <div class="contact1 call1"></div></a> 
+              
+              <a href="#" class="card-footer-item replace-one">Replace</a>
             </footer>
           </div>
-
           <div class="cardbox">
-
             <header class="card-header">
-              <p class="card-header-title">""</p>
-              <a href="#" class="card-header-icon" aria-label="more options">
-                <span class="icon">
-                  <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-              </a>
+              <p class="card-header-title name2">Restaurant Name</p> <br>
+             <p class="type2"></p>
             </header>
+            <div class="card-header rating2 is-centered"></div>
             <div class="card-content">
               <div class="content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
-                <br>
-                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+               <img src="" alt="Restaurant 2" class="pic2">
+               <div class="address2 text-space"></div>
+               <div class="hours2 text-space"></div>
+               <a class="url2 text-space">Click here for menu, reviews and more...</a>
               </div>
             </div>
             <footer class="card-footer">
-              <a href="#" class="card-footer-item">Contact</a>
-              <a href="#" class="card-footer-item">Replace</a>
+              <a href="#" class="card-footer-item contact2">Call: &nbsp; <div class="contact2 call2"></div></a> 
+              <a href="#" class="card-footer-item replace-two">Replace</a>
             </footer>
           </div>
-
           <div class="cardbox">
-
             <header class="card-header">
-              <p class="card-header-title">""</p>
-              <a href="#" class="card-header-icon" aria-label="more options">
-                <span class="icon">
-                  <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-              </a>
+
+              <p class="card-header-title name3">Restaurant Name</p><br>
+              <p class="type3"></p>
+
             </header>
+
+            <div class="card-header rating3 is-centered"></div>
+
             <div class="card-content">
               <div class="content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
-                <br>
-                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+               <img src="" alt="Restaurant 3" class="pic3">
+               <div class="address3 text-space"></div>
+               <div class="hours3 text-space"></div>
+               <a class="url3 text-space">Click here for menu, reviews and more...</a>
+
               </div>
             </div>
             <footer class="card-footer">
-              <a href="#" class="card-footer-item">Contact</a>
-              <a href="#" class="card-footer-item">Replace</a>
+              <a href="#" class="card-footer-item contact3">Call: &nbsp; <div class="contact3 call3"></div></a> 
+              <a href="#" class="card-footer-item replace-three">Replace</a>
             </footer>
           </div>
+          
+
             </div>
           </div>
         </article>
-  
     </div>
-
-          <div class="columns is-vcentered">
-            <a class="column is-6">
-              <p class="bd-notification is-primary"></p>
-            </a>
-            <a class="column is-8">
-              <p class="bd-notification is-primary">Get rid of it.</p>
-            </a>
-          </div>
+         
           
           <div id="wellSection"></div>
         </section>
     </container>
-    <footer class="footer" href="index.html">
-      <p>Copyright © 2020</p>
+    <footer class="footer has-background-danger">
+      <p class="copyright">Copyright © 2020</p>
     </footer>
   </body>
   <script src="script.js"></script>
 </html>
-
