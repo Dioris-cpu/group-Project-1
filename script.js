@@ -7,16 +7,23 @@ $(document).ready(function () {
 
   //get nearby restaurants on document load.
   setUsersCurrentPosition();
+  showHistory();
+
+  //listen for the enter key from search fields.
+$("input").keyup(function(event) {
+  if (event.keyCode === 13) {
+    $('#search-btn').click();
+  }
+});
 
   //Main event.
   $("#search-btn").on("click", function () {
-    var searchItem = $(".search-text").val().trim();
+    var searchItem = $("#search-query").val().trim();
+
     setInLocalStorage(searchItem);
     geo.getCurrentPosition(function (position) {
       lat = position.coords.latitude;
       lng = position.coords.longitude;
-      var coords = { lat: lat, lng: lng };
-      console.log(coords);
 
     $.ajax({
       url:
@@ -46,6 +53,8 @@ $(document).ready(function () {
         paintResults(allRest);
       });
     });});
+    //Clear search field.
+    $("#search-query").val('');
   });
 
   function setUsersCurrentPosition() {
@@ -238,81 +247,73 @@ $(document).ready(function () {
   $('.call3').text('  '+phone);
   }
 
-  function setInLocalStorage(cuisine) {
-    var searches; 
-         
-    if (localStorage.getItem("search") === null) {
-      searches = [];
-    } else {
-      searches = JSON.parse(localStorage.getItem("search"));
-    }
-    if (searches.includes(cuisine)){return}
-    searches.push(cuisine);
-    localStorage.setItem("search", JSON.stringify(searches));
-    showHistory(cuisine);
+function setInLocalStorage(cuisine) {
+  var searches; 
+        
+  if (localStorage.getItem("search") === null) {
+    searches = [];
+  } else {
+    searches = JSON.parse(localStorage.getItem("search"));
   }
-  
-  function showHistory(dish) {
-    var history;  
-    if (localStorage.getItem("search") === null) {
-      history = [];
-    } else {
-      history = JSON.parse(localStorage.getItem("search"));
-    }
-     //reset current list
-     document.querySelector("#history").textContent = "";
+  if (searches.includes(cuisine)){return}
+  searches.push(cuisine);
+  localStorage.setItem("search", JSON.stringify(searches));
+  showHistory(cuisine);
+}
 
-     var container = document.getElementById('history'),
-         ul = document.createElement("ul"),
-         aTag = document.createElement("a");
+function showHistory() {
+  var history;  
+  if (localStorage.getItem("search") === null) {
+    history = [];
+  } else {
+    history = JSON.parse(localStorage.getItem("search"));
+  }
+  //reset current list
+  document.querySelector("#history").textContent = "";
 
-      
+  var container = document.getElementById('history'),
+      ul = document.createElement("ul");
 
-      // //list current search item
-      ul.className = 'menu-list';
-      // currentItem = document.createElement("li");
-      // aTag.appendChild(document.createTextNode(dish))
-      // currentItem.appendChild(aTag);
-      // ul.appendChild(currentItem);
+  ul.className = 'menu-list';
 
-      //The rest of them
-      history.forEach(function(search)  {
-        var a = document.createElement("a"),
-            li = document.createElement("li");
+  //The rest of them
+  history.forEach(function(search)  {
+    var a = document.createElement("a"),
+        li = document.createElement("li");
 
-        a.addEventListener('click', function(){
-          $("#searchQuery").val(search)
-          $('#search-btn').click()
-        })
-        a.appendChild(document.createTextNode(search));
-        li.appendChild(a);
-        ul.appendChild(li);
-      })
-      container.appendChild(ul);
-   }
+    a.addEventListener('click', function(){
+      $("#search-query").val(search)
+      $('#search-btn').click()
+    })
+    a.appendChild(document.createTextNode(search));
+    li.appendChild(a);
+    ul.appendChild(li);
+  })
+  container.appendChild(ul);
+}
 
 function initMap(coords) {
-  mapDisplay = new google.maps.Map(document.getElementById("map"), {
-    zoom: 10,
-    center: coords,
-    disableDefaultUI: true
-  }),
-    marker = new google.maps.Marker({ position: coords, map: mapDisplay });
+mapDisplay = new google.maps.Map(document.getElementById("map"), {
+  zoom: 10,
+  center: coords,
+  disableDefaultUI: true
+}),
+  marker = new google.maps.Marker({ position: coords, map: mapDisplay });
 }
 
 function getMarkers(restuarants) {
-  var markers = [],
-      locations = [],
-      bounds = new google.maps.LatLngBounds();
+var markers = [],
+    locations = [],
+    bounds = new google.maps.LatLngBounds();
 
-  //Set the coordinates into a Json format.
-  restuarants.forEach(function(restaurant) {
-      var coords = {
-          lat : restaurant.restaurant.location.latitude,
-          lng : restaurant.restaurant.location.longitude
-      } 
-      locations.push(coords)
-  });
+//Set the coordinates into a Json format.
+restuarants.forEach(function(restaurant) {
+    var coords = {
+        lat : restaurant.restaurant.location.latitude,
+        lng : restaurant.restaurant.location.longitude
+    } 
+    locations.push(coords)
+});
   //generate markers for each restaurant location. 
   locations.forEach(function (location) {
       var position = new google.maps.LatLng(location.lat, location.lng);
