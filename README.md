@@ -19,7 +19,10 @@ By: Donavan Brown, Dioris Diaz, Page Tyler, Daniel Gibbons
 
 ##User Stories Completed
 
-* As a user I should be able to search what I want to eat and get the closest 3 restaurants that have that food.
-* As a user I should be able to see on the Map where the suggested restaurants are.
+* As a user I should be able to search what I want to eat and see the closest 3 restaurants that have that food in the cards below.
+* As a user I should be able to see restaurants highlighted on the Map where the suggested restaurants are.
 
-##Backlog
+##Links
+
+https://dioris-cpu.github.io/group-Project-1/#
+https://github.com/Dioris-cpu/group-Project-1
