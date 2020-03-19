@@ -293,7 +293,6 @@ function setInLocalStorage(cuisine) {
   showHistory(cuisine);
 }
 
-
 function showHistory() {
   var history;
   if (localStorage.getItem("search") === null) {
@@ -372,7 +371,7 @@ function getMarkers(restuarants) {
     var coords = {
       lat: restaurant.restaurant.location.latitude,
       lng: restaurant.restaurant.location.longitude
-    };
+    }
     locations.push(coords);
   });
   //generate markers for each restaurant location.

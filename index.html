@@ -1,63 +1,65 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>WishDish!</title>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <!-- Google Maps -->
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCI3zv9mMZuVUPGueGVIYUyD3etz0VJK7I&callback=initMap">
-      </script>
-    <!-- Bulma -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <!-- Font Awesome -->
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <!-- favicon and local style -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/pics/favicon.ico">
-    <link rel="stylesheet" href="assets/style/style.css">
-  </head>
-  <body>
-    <container class="flex-container">
-        <nav class="navbar has-background-danger level-item" role="navigation" aria-label="main navigation">
-            <h1 class="title has-text-white">
-              Welcome to WishDish!
-            </h1>
-          <h2 class="subtitle">
-            <div class="navbar-end has-margin-bottom-7">
-            </div>
-        </nav>
-        <div class="container">
-          <div class="card has-margin-top-7">
-            <header class="card-header">
-              <p class="card-header-title">
-                Find the food you're craving in seconds!
-              </p>
-            </header>
-           
-            <div class="columns">
-              <div class="column is-vcentered">
-               
-                <p class="menu-label has-text-left history">
-                  <i class="fas fa-history fa-2x"></i>  History
-                </p>
-                <div id="history"></div>
-              </aside>
-              
-              </div>
-              <div class="column">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WishDish!</title>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <!-- Google Maps -->
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCI3zv9mMZuVUPGueGVIYUyD3etz0VJK7I&callback=initMap">
+    </script>
+  <!-- Bulma -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+  <!-- Font Awesome -->
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <!-- favicon and local style -->
+  <link rel="shortcut icon" type="image/x-icon" href="assets/pics/favicon.ico">
+  <link rel="stylesheet" href="assets/style/style.css">
+</head>
+
+<body>
+  <container class="flex-container">
+    <nav class="navbar has-background-danger level-item" role="navigation" aria-label="main navigation">
+      <h1 class="title has-text-white">
+        Welcome to WishDish!
+      </h1>
+      <h2 class="subtitle">
+        <div class="navbar-end has-margin-bottom-7">
+        </div>
+    </nav>
+    <div class="container">
+      <div class="card has-margin-top-7">
+        <header class="card-header">
+          <p class="card-header-title">
+            Find the food you're craving in seconds!
+          </p>
+        </header>
+
+        <div class="columns">
+          <div class="column is-vcentered">
+
+            <p class="menu-label has-text-left history">
+              <i class="fas fa-history fa-2x"></i> History
+            </p>
+            <div id="history"></div>
+            </aside>
+
+          </div>
+          <div class="column">
             <div class="card-content ">
               <div class="content">
 
                 <div id="message-container">
                   <div id="message"></div>
                 </div>
-               
+
                 <p> Enter whichever cuisine below to find some good eats.</p>
                 <br>
-                
+
                 <div class="field">
                   <p class="control has-icons-left has-icons-right">
                     <input id="search-query" class="input is-rounded" type="text" placeholder="Find Some Eats!">
@@ -66,101 +68,102 @@
                     </span>
                   </p>
                   <div class="control level-item">
-                    <button class="button is-info is-large"  id="search-btn">
+                    <button class="button is-info is-large" id="search-btn">
                       Search
                     </button>
                   </div>
                 </div>
               </div>
             </div>
-            </div>
-            <div class="column is-centered is-vcentered">
-              <div id="map"></div>
-            </div>
           </div>
-          <P style="page-break-before: always"></P>
-          <section>
+          <div class="column is-centered is-vcentered">
+            <div id="map"></div>
+          </div>
+        </div>
+        <P style="page-break-before: always"></P>
+        <section>
 
-        <article class="column is-12 fix-pad">
-          <div class="cardbox one">
+          <article class="column is-12 fix-pad box">
+            <div class="cardbox one row">
 
-            <header class="card-header">
+              <header class="card-header">
 
-              <p class="card-header-title name1">Restaurant Name</p><br>
-              <p class="type1"></p>
-            </header>
-            <div class="card-header rating1 is-centered"></div>
-            <div class="card-content">
-              <div class="content">
-               <img src="" alt="Restaurant 1" class="pic1">
-               <div class="address1"></div>
-               <div class="hours1"></div>
-               <a class="url1">Click here for menu, reviews and more...</a>
+                <p class="card-header-title name1">Restaurant Name</p><br>
+                <p class="type1"></p>
+              </header>
+              <div class="card-header rating1 is-centered"></div>
+              <div class="card-content">
+                <div class="content">
+                  <img src="" alt="Restaurant 1" class="pic1">
+                  <div class="address1"></div>
+                  <div class="hours1"></div>
+                  <a class="url1">Click here for menu, reviews and more...</a>
+                </div>
               </div>
+              <footer class="card-footer">
+                <a href="#" class="card-footer-item contact1">Call: &nbsp; <div class="contact1 call1"></div></a>
+
+                <a href="#" class="card-footer-item replace-one">Replace</a>
+              </footer>
             </div>
-            <footer class="card-footer">
-              <a href="#" class="card-footer-item contact1">Call: &nbsp; <div class="contact1 call1"></div></a> 
-              
-              <a href="#" class="card-footer-item replace-one">Replace</a>
-            </footer>
-          </div>
-          <div class="cardbox">
-            <header class="card-header">
-              <p class="card-header-title name2">Restaurant Name</p> <br>
-             <p class="type2"></p>
-            </header>
-            <div class="card-header rating2 is-centered"></div>
-            <div class="card-content">
-              <div class="content">
-               <img src="" alt="Restaurant 2" class="pic2">
-               <div class="address2"></div>
-               <div class="hours2"></div>
-               <a class="url2">Click here for menu, reviews and more...</a>
+            <div class="cardbox row">
+              <header class="card-header">
+                <p class="card-header-title name2">Restaurant Name</p> <br>
+                <p class="type2"></p>
+              </header>
+              <div class="card-header rating2 is-centered"></div>
+              <div class="card-content">
+                <div class="content">
+                  <img src="" alt="Restaurant 2" class="pic2">
+                  <div class="address2"></div>
+                  <div class="hours2"></div>
+                  <a class="url2">Click here for menu, reviews and more...</a>
+                </div>
               </div>
+              <footer class="card-footer">
+                <a href="#" class="card-footer-item contact2">Call: &nbsp; <div class="contact2 call2"></div></a>
+                <a href="#" class="card-footer-item replace-two">Replace</a>
+              </footer>
             </div>
-            <footer class="card-footer">
-              <a href="#" class="card-footer-item contact2">Call: &nbsp; <div class="contact2 call2"></div></a> 
-              <a href="#" class="card-footer-item replace-two">Replace</a>
-            </footer>
-          </div>
-          <div class="cardbox">
-            <header class="card-header">
+            <div class="cardbox row">
+              <header class="card-header">
 
-              <p class="card-header-title name3">Restaurant Name</p><br>
-              <p class="type3"></p>
+                <p class="card-header-title name3">Restaurant Name</p><br>
+                <p class="type3"></p>
 
-            </header>
+              </header>
 
-            <div class="card-header rating3 is-centered"></div>
+              <div class="card-header rating3 is-centered"></div>
 
-            <div class="card-content">
-              <div class="content">
-               <img src="" alt="Restaurant 3" class="pic3">
-               <div class="address3"></div>
-               <div class="hours3"></div>
-               <a class="url3">Click here for menu, reviews and more...</a>
+              <div class="card-content">
+                <div class="content">
+                  <img src="" alt="Restaurant 3" class="pic3">
+                  <div class="address3"></div>
+                  <div class="hours3"></div>
+                  <a class="url3">Click here for menu, reviews and more...</a>
 
+                </div>
               </div>
+              <footer class="card-footer">
+                <a href="#" class="card-footer-item contact3">Call: &nbsp; <div class="contact3 call3"></div></a>
+                <a href="#" class="card-footer-item replace-three">Replace</a>
+              </footer>
             </div>
-            <footer class="card-footer">
-              <a href="#" class="card-footer-item contact3">Call: &nbsp; <div class="contact3 call3"></div></a> 
-              <a href="#" class="card-footer-item replace-three">Replace</a>
-            </footer>
-          </div>
-          
 
-            </div>
-          </div>
-        </article>
+
+      </div>
     </div>
-         
-          
-          <div id="wellSection"></div>
-        </section>
-    </container>
-    <footer class="footer has-background-danger">
-      <p class="copyright">Copyright © 2020</p>
-    </footer>
-  </body>
-  <script src="script.js"></script>
+    </article>
+    </div>
+
+
+    <div id="wellSection"></div>
+    </section>
+  </container>
+  <footer class="footer has-background-danger">
+    <p class="copyright">Copyright © 2020</p>
+  </footer>
+</body>
+<script src="script.js"></script>
+
 </html>
