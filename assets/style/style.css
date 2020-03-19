@@ -89,6 +89,15 @@ footer.footer {
    flex-shrink: 0;
 }
 
+.box {
+  display:table;
+  background-color: aliceblue;
+}
+.row {
+  display:table-row;
+}
+
+
 
 .copyright {
   color: white;

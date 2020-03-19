@@ -22,10 +22,10 @@ By: Donavan Brown, Dioris Diaz, Page Tyler, Daniel Gibbons
 * As a user I should be able to search what I want to eat and see the closest 3 restaurants that have that food in the cards below.
 * As a user I should be able to see restaurants highlighted on the Map where the suggested restaurants are.
 
+##Screenshot:
+![image](https://user-images.githubusercontent.com/48693333/77028924-a7c23e00-6970-11ea-8a94-92daa2884025.png)
+
 ##Links
 
 https://dioris-cpu.github.io/group-Project-1/#
 https://github.com/Dioris-cpu/group-Project-1
-
-Screenshot:
-https://user-images.githubusercontent.com/48693333/72358079-01c92d80-36ba-11ea-8ac0-06fa6704a6cd.png
