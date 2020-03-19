@@ -278,7 +278,7 @@ function paintResults(results) {
   }
 
 function setInLocalStorage(cuisine) {
-  var searches;
+  var searches = [];
 
   if (localStorage.getItem("search") === null) {
     searches = [];
@@ -287,6 +287,10 @@ function setInLocalStorage(cuisine) {
   }
   if (searches.includes(cuisine)) {
     return;
+  }
+  //keep history length at < 5 items
+  if (searches.length > 4) {
+    searches.shift();
   }
   searches.push(cuisine);
   localStorage.setItem("search", JSON.stringify(searches));
@@ -300,6 +304,7 @@ function showHistory() {
   } else {
     history = JSON.parse(localStorage.getItem("search"));
   }
+  
   //reset current list
   document.querySelector("#history").textContent = "";
 

@@ -91,6 +91,7 @@ footer.footer {
 
 .box {
   display:table;
+  background-color: aliceblue;
 }
 .row {
   display:table-row;
